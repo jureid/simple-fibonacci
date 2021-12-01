@@ -1,29 +1,29 @@
-#include <fmt/format.h>
-#include <cppitertools/itertools.hpp>
+#include <iostream>
 #include <vector>
 
 /**
  * @brief sample fibonacci program
- * TEST
  * 
- * @param n 
  * @return int 
  */
-int fib(int n) {
-	int a = 0, b = 1;
-
-	for ([[maybe_unused]] int i : iter::range(n)) {
-		auto tmp = b;
-		b = a + b;
-		a = tmp;
-		b = tmp;
-	}
-
-	return a;
-}
-
 int main() {
-	for (int i : iter::range(15)) {
-		fmt::print("fib({}) = {}\n", i, fib(i));
-	}
+    int n = 15, t1 = 0, t2 = 1, nextTerm = 0;
+
+    for (int i = 1; i <= n; ++i) {
+        // Prints the first two terms.
+        if(i == 1) {
+            std::cout << t1 << ", ";
+            continue;
+        }
+        if(i == 2) {
+            std::cout << t2 << ", ";
+            continue;
+        }
+        nextTerm = t1 + t2;
+        t1 = t2;
+        t2 = nextTerm;
+        
+        std::cout << nextTerm << ", ";
+    }
+    return 0;
 }
